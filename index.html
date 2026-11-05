@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1220">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TradeTrainer">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>TradeTrainer – Trading-Rätsel</title>
+<style>
+:root{--bg:#080d17;--panel:#101a2a;--panel2:#142238;--line:#243650;--text:#e8effa;--muted:#91a4bd;--blue:#3b9cff;--green:#20d69a;--red:#ff6375;--gold:#f6c65b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#14233a 0,#080d17 55%);color:var(--text);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif}
+button,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:#17263b;color:var(--text);border-radius:9px;padding:9px 12px}button:hover{border-color:var(--blue);background:#1c3452}button.primary{background:var(--blue);border-color:var(--blue);color:#061321;font-weight:700}button.good{border-color:#176d58;color:#72f0c1}button.bad{border-color:#803747;color:#ff9aa7}button.active{outline:2px solid var(--blue);background:#1d3d61}
+select{background:#142238;color:var(--text);border:1px solid var(--line);padding:9px;border-radius:9px}
+header{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #1e2d43;background:#0b1321dd;position:sticky;top:0;z-index:4;backdrop-filter:blur(12px)}
+.brand{font-weight:800;font-size:18px;letter-spacing:.2px;display:flex;gap:10px;align-items:center}.logo{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#21d6a0,#348eff);display:grid;place-items:center;color:#071522;font-weight:900}
+.topstats{display:flex;gap:10px}.pill{border:1px solid var(--line);background:#111e30;border-radius:10px;padding:7px 12px;color:var(--muted)}.pill b{color:var(--text);font-size:15px}
+.layout{display:grid;grid-template-columns:220px minmax(400px,1fr) 320px;gap:16px;padding:16px;max-width:1600px;margin:auto}
+aside,.card{background:linear-gradient(180deg,#111d2e,#0e1827);border:1px solid var(--line);border-radius:14px}
+aside{padding:16px;height:calc(100vh - 98px);position:sticky;top:82px}.navtitle{font-size:11px;color:#6f86a3;text-transform:uppercase;letter-spacing:1.2px;margin:10px 8px}.navitem{display:flex;align-items:center;gap:10px;padding:11px;border-radius:9px;color:#b8c8dc;margin:4px 0;cursor:pointer}.navitem.active,.navitem:hover{background:#193553;color:#fff}.navitem span{width:22px;text-align:center}
+main{min-width:0}.card{padding:15px;margin-bottom:14px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.muted{color:var(--muted)}.small{font-size:12px}.heading{font-size:19px;font-weight:750;margin:0}.subheading{font-size:13px;color:var(--muted);margin-top:3px}.progress{height:7px;background:#1b2a40;border-radius:8px;overflow:hidden;margin-top:12px}.progress>i{display:block;height:100%;background:linear-gradient(90deg,#258bff,#25d7a2);width:0}
+.charthead{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.chartwrap{position:relative;width:100%;height:440px;background:#091321;border:1px solid #263951;border-radius:10px;overflow:hidden}.chartwrap canvas{width:100%;height:100%;display:block;cursor:crosshair}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:8px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.tasktitle{font-size:18px;font-weight:750;margin:8px 0}.tag{display:inline-block;border-radius:20px;padding:4px 9px;background:#1a3452;color:#8ec8ff;font-size:11px;font-weight:700}.difficulty{color:var(--gold);background:#3b3018}.question{margin:14px 0 7px;font-weight:700}.choices{display:grid;gap:7px}.choice{text-align:left;background:#101e30;border:1px solid #2a3c55;padding:10px;border-radius:9px}.choice.selected{border-color:var(--blue);background:#163354}.choice.correct{border-color:var(--green);background:#10362f}.choice.wrong{border-color:var(--red);background:#3a1c29}
+.leveltools{display:flex;gap:6px;flex-wrap:wrap}.leveltools button{font-size:12px;padding:7px 9px}.levelval{font-variant-numeric:tabular-nums;color:#d9e7f7}.result{padding:12px;border-radius:10px;margin-top:12px;display:none}.result.show{display:block}.result.ok{background:#10352c;border:1px solid #1d795d}.result.no{background:#3a2029;border:1px solid #854151}
+.metricgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metric{background:#0d1928;padding:10px;border:1px solid #22334a;border-radius:9px}.metric strong{font-size:18px;display:block}.metric span{font-size:11px;color:var(--muted)}
+.rightcol .card{padding:14px}.tasksteps{display:flex;gap:7px;align-items:center;margin:12px 0;color:var(--muted);font-size:12px}.step{background:#1b2c43;border-radius:7px;padding:5px 8px}.step.current{background:#1b4c7b;color:#fff}.explain{color:#c4d2e3;font-size:13px;line-height:1.6}.hidden{display:none!important}
+footer{text-align:center;color:#667d99;padding:8px 20px 22px;font-size:11px}
+@media(max-width:1100px){.layout{grid-template-columns:190px minmax(350px,1fr)}.rightcol{grid-column:2}.rightcol .card{display:block}aside{height:auto}}
+@media(max-width:720px){header{padding:0 12px}.topstats .pill:nth-child(2){display:none}.layout{display:block;padding:9px}.layout aside{position:static;height:auto;margin-bottom:10px}.navitems{display:flex;overflow:auto}.navitem{white-space:nowrap;padding:8px}.navtitle{display:none}.chartwrap{height:330px}.rightcol{margin-top:12px}.metricgrid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">T</div> TradeTrainer <span class="muted small">/ Trading-Rätsel</span></div>
+ <div class="topstats"><div class="pill">⭐ <b id="xp">0 XP</b></div><div class="pill">🔥 <b id="streak">0 Serie</b></div><div class="pill">🏆 <b id="accuracy">0%</b></div></div>
+</header>
+<div class="layout">
+<aside>
+ <div class="navtitle">Training</div>
+ <div class="navitems">
+  <div class="navitem active"><span>▦</span>Aufgaben</div>
+  <div class="navitem" id="statsNav"><span>▥</span>Statistik</div>
+  <div class="navitem" id="learnNav"><span>▤</span>Lernkarten</div>
+ </div>
+ <div class="navtitle" style="margin-top:22px">Aufgabenfilter</div>
+ <label class="small muted" for="category">Thema</label><br>
+ <select id="category" style="width:100%;margin:6px 0 12px">
+  <option value="all">Alle Themen</option><option value="pattern">Chartmuster</option><option value="entry">Entry finden</option><option value="risk">SL / TP / CRV</option><option value="trend">Trend & Marktstruktur</option>
+ </select>
+ <label class="small muted" for="difficulty">Schwierigkeit</label><br>
+ <select id="difficulty" style="width:100%;margin:6px 0 12px">
+  <option value="all">Alle Stufen</option><option value="1">Einfach</option><option value="2">Mittel</option><option value="3">Schwer</option>
+ </select>
+ <div class="navtitle" style="margin-top:22px">Dein Fortschritt</div>
+ <div class="metric"><strong id="doneCount">0</strong><span>Gelöste Aufgaben</span></div>
+ <div style="height:8px"></div><div class="metric"><strong id="bestStreak">0</strong><span>Beste Serie</span></div>
+ <div style="height:8px"></div><div class="metric"><strong id="avgScore">–</strong><span>Trefferquote</span></div>
+ <div class="navtitle" style="margin-top:22px">Markt</div>
+ <div class="small muted">EUR/USD · Beispiel-Zeitrahmen 15M / 1H / 4H</div>
+</aside>
+<main>
+ <section class="card">
+  <div class="row"><div><div class="heading">Dein Trading-Training</div><div class="subheading" id="scenarioMeta">Aufgabe 1 · Chartanalyse</div></div><div class="row"><span class="tag" id="sourceTag">Übungsszenario</span><span class="tag difficulty" id="difficultyTag">Einfach</span></div></div>
+  <div class="progress"><i id="progressbar"></i></div>
+ </section>
+ <section class="card">
+  <div class="charthead">
+   <strong id="symbol">EUR/USD</strong>
+   <select id="timeframe"><option>15M</option><option>1H</option><option>4H</option><option>1D</option></select>
+   <span class="muted small" id="chartHint">Chart analysieren · Lösung nicht eingeblendet</span>
+   <div style="margin-left:auto" class="leveltools">
+    <button id="toolEntry" class="active">＋ Entry</button><button id="toolSL">－ SL</button><button id="toolTP">◎ TP</button><button id="clearLevels">Zurücksetzen</button>
+   </div>
+  </div>
+  <div class="chartwrap"><canvas id="chart"></canvas></div>
+  <div class="legend"><span><i class="dot" style="background:#20d69a"></i>Bullische Kerze</span><span><i class="dot" style="background:#ff6375"></i>Bärische Kerze</span><span><i class="dot" style="background:#3b9cff"></i>Deine Markierungen</span><span>💡 Klicke in den Chart, um Entry, SL oder TP zu platzieren.</span></div>
+ </section>
+ <section class="card">
+  <div class="row"><div><div class="heading">Deine Analyse</div><div class="subheading">Wähle die passende Antwort und markiere deine Kurslevel direkt im Chart.</div></div><button id="showHint">Hinweis anzeigen</button></div>
+  <div class="question" id="q1">1. Welches Chartmuster erkennst du?</div><div class="choices" id="choices"></div>
+  <div class="question">2. Deine Kurslevel</div>
+  <div class="metricgrid"><div class="metric"><span>ENTRY</span><strong class="levelval" id="entryVal">–</strong></div><div class="metric"><span>STOP-LOSS</span><strong class="levelval" id="slVal">–</strong></div><div class="metric"><span>TAKE-PROFIT</span><strong class="levelval" id="tpVal">–</strong></div></div>
+  <div class="row" style="margin-top:10px"><div class="muted small">Berechnetes CRV: <b id="rrVal" style="color:var(--text)">–</b></div><button class="primary" id="check">Antwort überprüfen</button></div>
+  <div class="result" id="result"></div>
+ </section>
+</main>
+<div class="rightcol">
+ <section class="card">
+  <div class="row"><span class="tag">AUFGABE</span><span class="muted small" id="taskNumber">01 / 12</span></div>
+  <div class="tasktitle" id="taskTitle">Kopf-Schulter-Formation erkennen</div>
+  <div class="subheading" id="taskDesc">Analysiere die Kursbewegung und finde das Setup.</div>
+  <div class="tasksteps"><span class="step current">1 Muster</span><span class="step">2 Entry</span><span class="step">3 Risiko</span></div>
+  <div class="question">Was ist gefragt?</div><p class="explain" id="taskPrompt">Erkenne das Muster und plane einen möglichen Trade.</p>
+  <div class="question">Hinweis</div><p class="explain" id="hint" style="display:none"></p>
+  <div class="question">Nach der Auswertung</div><p class="explain">Du erhältst Punkte für die richtige Formation und für Kurslevel in der Nähe der Musterlösung. Die Erklärung zeigt dir, worauf du achten solltest.</p>
+  <button id="next" class="primary" style="width:100%;margin-top:12px" disabled>Nächste Aufgabe →</button>
+ </section>
+ <section class="card">
+  <div class="heading" style="font-size:15px">Deine Session</div><div class="metricgrid" style="margin-top:10px"><div class="metric"><strong id="sessionCorrect">0</strong><span>Richtig</span></div><div class="metric"><strong id="sessionWrong">0</strong><span>Falsch</span></div><div class="metric"><strong id="sessionXP">0</strong><span>XP</span></div></div>
+ </section>
+ <section class="card" id="statsPanel" style="display:none">
+  <div class="heading">Statistik</div><p class="explain" id="statsText"></p><button id="resetStats" class="bad">Fortschritt zurücksetzen</button>
+ </section>
+ <section class="card" id="learnPanel" style="display:none">
+  <div class="heading">Mini-Lernkarten</div><p class="explain"><b>Head & Shoulders:</b> Drei Hochpunkte; der mittlere (Kopf) ist höher. Ein Bruch der Nackenlinie kann eine Trendwende bestätigen.</p><p class="explain"><b>Retest:</b> Nach einem Ausbruch kehrt der Kurs zur durchbrochenen Zone zurück und testet sie erneut.</p><p class="explain"><b>CRV:</b> Potenzieller Gewinn geteilt durch das potenzielle Risiko. 2:1 bedeutet, dass das Ziel doppelt so weit entfernt ist wie der Stop.</p>
+ </section>
+</div>
+</div>
+<footer>TradeTrainer ist ein Lern- und Übungsprojekt. Kursverläufe sind simulierte Beispieldaten, keine Echtzeitkurse und keine Anlageempfehlung.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const patterns=[
+ {id:1,title:"Kopf-Schulter-Formation",cat:"pattern",diff:2,source:"historical",answer:"Kopf-Schulter (bearish)",opts:["Kopf-Schulter (bearish)","Inverse Kopf-Schulter","Doppelboden","Aufsteigendes Dreieck"],hint:"Achte auf drei Hochpunkte: Der mittlere ist höher. Die Nackenlinie verbindet die beiden Zwischentiefs.",explain:"Die rechte Schulter bleibt unter dem Kopf. Ein Bruch der Nackenlinie und ein möglicher Retest liefern eine Bestätigung. Ein Stop liegt typischerweise oberhalb der rechten Schulter.",entry:1.0881,sl:1.0910,tp:1.0823,rr:2},
+ {id:2,title:"Doppelboden oder nur Pause?",cat:"pattern",diff:1,source:"generated",answer:"Doppelboden (bullish)",opts:["Doppelboden (bullish)","Doppeltop (bearish)","Bärenflagge","Absteigendes Dreieck"],hint:"Vergleiche die beiden Tiefpunkte und beobachte den Widerstand dazwischen.",explain:"Zwei ähnliche Tiefs mit einer Reaktion am Zwischenhoch können einen Doppelboden bilden. Der Ausbruch über den Zwischenwiderstand ist die Bestätigung.",entry:1.0742,sl:1.0710,tp:1.0806,rr:2},
+ {id:3,title:"Breakout und Retest",cat:"entry",diff:2,source:"generated",answer:"Breakout mit Retest",opts:["Breakout mit Retest","Entry mitten in der Range","Gegen den Ausbruch verkaufen","Sofort am ersten Widerstand kaufen"],hint:"Ein Ausbruch allein ist nicht immer ausreichend. Wo könnte eine Bestätigung entstehen?",explain:"Ein Retest der Ausbruchszone kann einen strukturierten Einstieg ermöglichen. Achte auf eine klare Reaktion und einen sinnvollen Invalidierungspunkt.",entry:1.0920,sl:1.0892,tp:1.0976,rr:2},
+ {id:4,title:"Stop-Loss sinnvoll platzieren",cat:"risk",diff:1,source:"generated",answer:"Unter dem letzten Swing-Tief",opts:["Direkt 2 Pips unter Entry","Unter dem letzten Swing-Tief","Beliebig weit entfernt","Ohne Stop-Loss"],hint:"Der Stop sollte dort liegen, wo deine Trade-Idee technisch nicht mehr gültig ist.",explain:"Bei einem Long-Setup liegt der Stop häufig unter dem relevanten Swing-Tief bzw. unter der Struktur, deren Bestand die Idee trägt.",entry:1.0650,sl:1.0620,tp:1.0710,rr:2},
+ {id:5,title:"Marktstruktur lesen",cat:"trend",diff:2,source:"historical",answer:"Aufwärtstrend",opts:["Aufwärtstrend","Abwärtstrend","Seitwärtsphase","Trendwechsel bestätigt"],hint:"Achte auf die Abfolge der Hochs und Tiefs.",explain:"Ein Aufwärtstrend besteht typischerweise aus höheren Hochs (HH) und höheren Tiefs (HL). Ein einzelner roter Impuls reicht nicht automatisch für einen Trendwechsel.",entry:1.1010,sl:1.0980,tp:1.1070,rr:2},
+ {id:6,title:"CRV richtig einschätzen",cat:"risk",diff:1,source:"generated",answer:"2:1",opts:["0,5:1","1:1","2:1","4:1"],hint:"Miss den Abstand von Entry zu Stop und von Entry zu Ziel.",explain:"Bei 30 Pips Risiko und 60 Pips möglichem Gewinn beträgt das CRV 2:1. Gebühren, Spread und Ausführung können das reale Verhältnis verändern.",entry:1.0800,sl:1.0770,tp:1.0860,rr:2},
+ {id:7,title:"Bärenflagge erkennen",cat:"pattern",diff:3,source:"generated",answer:"Bärenflagge",opts:["Bullische Flagge","Bärenflagge","Doppelboden","Symmetrisches Dreieck"],hint:"Nach einem starken Abwärtsimpuls folgt eine kurze, leicht aufwärts gerichtete Konsolidierung.",explain:"Die Bärenflagge ist ein Fortsetzungsmuster: starker Abwärtsimpuls, anschließende Gegenbewegung/Konsolidierung und möglicher Ausbruch nach unten.",entry:1.0560,sl:1.0590,tp:1.0500,rr:2},
+ {id:8,title:"Inverse SKS",cat:"pattern",diff:3,source:"historical",answer:"Inverse Kopf-Schulter",opts:["Kopf-Schulter","Inverse Kopf-Schulter","Doppeltop","Steigender Keil"],hint:"Drei Tiefpunkte – das mittlere Tief ist am tiefsten.",explain:"Die inverse SKS kann eine bullische Umkehrformation sein. Ein Ausbruch über die Nackenlinie ist ein mögliches Bestätigungssignal.",entry:1.0680,sl:1.0640,tp:1.0760,rr:2},
+ {id:9,title:"Entry nach Strukturbruch",cat:"entry",diff:3,source:"generated",answer:"Nach Bruch und Retest",opts:["Vor dem Strukturbruch","Nach Bruch und Retest","Mitten im Impuls hinterherspringen","Ohne Bestätigung antizipieren"],hint:"Geduld: Der Markt kann nach dem ersten Impuls noch einmal zur Ausbruchszone zurücklaufen.",explain:"Ein Entry nach bestätigtem Bruch und Retest kann das Risiko klarer definieren. Es gibt keine Garantie, dass jeder Retest hält.",entry:1.1130,sl:1.1090,tp:1.1210,rr:2},
+ {id:10,title:"Widerstand oder Support?",cat:"trend",diff:2,source:"generated",answer:"Widerstand",opts:["Unterstützung","Widerstand","Trendkanal","Fair Value Gap"],hint:"Der Kurs ist mehrfach an einer ähnlichen Preiszone nach unten abgeprallt.",explain:"Ein Widerstand ist eine Zone, in der Verkaufsdruck den Kurs wiederholt gebremst hat. Zonen sind meist sinnvoller als eine einzelne exakte Linie.",entry:1.1260,sl:1.1290,tp:1.1200,rr:2},
+ {id:11,title:"Take-Profit planen",cat:"risk",diff:2,source:"historical",answer:"Vor der nächsten Support-Zone",opts:["Beliebig weit entfernt","Vor der nächsten Support-Zone","Genau auf den Entry","Hinter dem Stop-Loss"],hint:"Ein Long-Trade sollte sein Ziel nicht blind durch einen nahen Widerstand hindurch planen.",explain:"Ein realistisches Ziel berücksichtigt die nächste relevante Marktstruktur. Ein TP knapp vor einer starken Gegenzone kann realistischer sein als ein willkürliches Ziel.",entry:1.1320,sl:1.1290,tp:1.1380,rr:2},
+ {id:12,title:"Gesamtes Setup beurteilen",cat:"entry",diff:3,source:"generated",answer:"Warten auf Bestätigung",opts:["Sofort einsteigen","Warten auf Bestätigung","Stop entfernen","Gegen den Trend handeln"],hint:"Es gibt noch keinen bestätigten Ausbruch und die Struktur ist uneindeutig.",explain:"Nicht zu handeln ist ebenfalls eine valide Entscheidung. Ohne klaren Trigger, Invalidierung und angemessenes CRV ist Abwarten oft die disziplinierte Wahl.",entry:1.1450,sl:1.1420,tp:1.1510,rr:2}
+];
+let current=0, selected="", tool="entry", levels={entry:null,sl:null,tp:null}, checked=false, session={correct:0,wrong:0,xp:0}, stats=JSON.parse(localStorage.getItem("ttstats")||'{"done":0,"correct":0,"wrong":0,"xp":0,"streak":0,"best":0}');
+let candles=[], chartRect=null;
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function makeCandles(seed,base,trend=1){let x=seed,rand=()=>{x=(x*1664525+1013904223)>>>0;return x/4294967296};let arr=[],p=base;for(let i=0;i<72;i++){let drift=(rand()-.48)*.00055+trend*.000035;let o=p,c=p+drift,h=Math.max(o,c)+rand()*.00028,l=Math.min(o,c)-rand()*.00028;arr.push({o,h,l,c});p=c}return arr}
+function scenarioCandles(s){let c=makeCandles(s.id*781, s.entry||1.08, s.id%2?1:-1);let base=s.entry; 
+ if(s.id===1){let pts=[.0000,.0008,.0017,.0009,.0003,.0010,.0025,.0010,.0002,.0009,.0015,.0002,-.0012,-.0020];}
+ // Make distinctive pattern silhouettes for pattern questions.
+ let vals=[];
+ if(s.id===1) vals=[0,.0003,.0007,.0014,.0020,.0012,.0006,.0002,.0010,.0025,.0031,.0020,.0011,.0003,.0009,.0013,.0005,-.0005,-.0010,-.0018,-.0026,-.0030];
+ else if(s.id===2) vals=[0,-.001,-.002,-.003,-.002,-.001,-.0002,.0005,.0010,.0004,-.0004,-.0014,-.0023,-.0021,-.0012,-.0004,.0006,.0015,.0022,.0028];
+ else if(s.id===8) vals=[0,-.0006,-.0014,-.0022,-.0013,-.0005,-.0012,-.0028,-.0038,-.0024,-.0012,-.0004,-.0012,-.0018,-.0008,.0001,.0010,.0018,.0025];
+ else if(s.id===7) vals=[0,-.0005,-.001,-.002,-.003,-.004,-.0048,-.0042,-.0038,-.0032,-.0035,-.0040,-.0046,-.0052,-.0062];
+ else if(s.id===5) vals=[0,.0004,.0001,.0008,.0005,.0012,.0009,.0018,.0013,.0022,.0018,.0028,.0023,.0032,.0038];
+ else vals=[0,.0003,.0008,.0004,.0010,.0005,.0002,.0009,.0014,.0010,.0018,.0011,.0015,.0021,.0026];
+ let n=72;let arr=[];let p=base-.0005;for(let i=0;i<n;i++){let idx=Math.floor(i/(n-1)*(vals.length-1));let f=(i/(n-1)*(vals.length-1))-idx;let v=vals[idx]*(1-f)+vals[Math.min(idx+1,vals.length-1)]*f;let center=base+v;let noise=(Math.sin(i*12.989+s.id)*.00012);let o=p,c=center+noise,h=Math.max(o,c)+.00015+(i%3)*.000025,l=Math.min(o,c)-.00014;arr.push({o,h,l,c});p=c}return arr}
+function draw(){const cv=$("chart"),ctx=cv.getContext("2d"),dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+ const pad={l:12,r:64,t:18,b:28},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;let min=Math.min(...candles.map(c=>c.l)),max=Math.max(...candles.map(c=>c.h));let extra=(max-min)*.13;min-=extra;max+=extra;const y=v=>pad.t+(max-v)/(max-min)*ch;const x=i=>pad.l+i/(candles.length-1)*cw;
+ ctx.strokeStyle="#1a2a3e";ctx.lineWidth=1;for(let i=0;i<=5;i++){let yy=pad.t+i*ch/5;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();let val=max-i*(max-min)/5;ctx.fillStyle="#8194ad";ctx.font="11px Segoe UI";ctx.fillText(val.toFixed(4),w-pad.r+7,yy+4)}
+ for(let i=0;i<6;i++){let xx=pad.l+i*cw/5;ctx.beginPath();ctx.moveTo(xx,pad.t);ctx.lineTo(xx,h-pad.b);ctx.stroke();ctx.fillStyle="#8194ad";ctx.fillText(String(i*12).padStart(2,"0")+":00",xx-13,h-8)}
+ const bw=Math.max(3,cw/candles.length*.58);candles.forEach((c,i)=>{let xx=x(i),up=c.c>=c.o;ctx.strokeStyle=up?"#20d69a":"#ff6375";ctx.fillStyle=ctx.strokeStyle;ctx.beginPath();ctx.moveTo(xx,y(c.h));ctx.lineTo(xx,y(c.l));ctx.stroke();let top=y(Math.max(c.o,c.c)),bot=y(Math.min(c.o,c.c));ctx.fillRect(xx-bw/2,top,bw,Math.max(1,bot-top))});
+ const line=(key,color,label)=>{let v=levels[key];if(v===null)return;let yy=y(v);ctx.strokeStyle=color;ctx.lineWidth=1.6;ctx.setLineDash([6,4]);ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=color;ctx.fillRect(w-pad.r+1,yy-9,60,18);ctx.fillStyle="#071321";ctx.font="bold 10px Segoe UI";ctx.fillText(label,w-pad.r+5,yy+4)};
+ line("entry","#3b9cff","ENTRY");line("sl","#ff6375","STOP");line("tp","#20d69a","TARGET");
+ chartRect={pad,cw,ch,min,max,w,h,y};}
+function priceAt(clientY){let r=$("chart").getBoundingClientRect(),yy=clientY-r.top;return chartRect.max-(yy-chartRect.pad.t)/(chartRect.ch)*(chartRect.max-chartRect.min)}
+$("chart").addEventListener("click",e=>{if(checked)return;let p=priceAt(e.clientY);levels[tool]=p;updateLevels();draw()});
+function updateLevels(){["entry","sl","tp"].forEach(k=>$(k+"Val").textContent=levels[k]===null?"–":levels[k].toFixed(4));let {entry,sl,tp}=levels;if(entry&&sl&&tp){let risk=Math.abs(entry-sl),reward=Math.abs(tp-entry);$("rrVal").textContent=risk? (reward/risk).toFixed(2)+":1":"–"}else $("rrVal").textContent="–"}
+function loadTask(){let cat=$("category").value,diff=$("difficulty").value;let list=patterns.filter(p=>(cat==="all"||p.cat===cat)&&(diff==="all"||p.diff===+diff));if(!list.length)list=patterns;current=(current+1)%list.length;window.activeList=list;let s=list[current];window.task=s;selected="";checked=false;levels={entry:null,sl:null,tp:null};$("result").className="result";$("result").innerHTML="";$("next").disabled=true;$("hint").style.display="none";$("hint").textContent=s.hint;$("taskTitle").textContent=s.title;$("taskDesc").textContent="Analysiere den Chart und entscheide selbst."; $("taskPrompt").textContent="Bestimme die Formation bzw. den passenden Trade-Plan. Setze Entry, Stop-Loss und Take-Profit im Chart."; $("scenarioMeta").textContent=`Aufgabe ${s.id} · ${s.cat==="pattern"?"Chartmuster":s.cat==="entry"?"Entry & Timing":s.cat==="risk"?"Risikomanagement":"Marktstruktur"}`;$("sourceTag").textContent=s.source==="historical"?"Historisch inspiriert":"Übungsszenario";$("difficultyTag").textContent=["","Einfach","Mittel","Schwer"][s.diff];$("taskNumber").textContent=String(s.id).padStart(2,"0")+" / 12";$("progressbar").style.width=((s.id/12)*100)+"%";
+ $("choices").innerHTML="";shuffle(s.opts).forEach(opt=>{let b=document.createElement("button");b.className="choice";b.textContent=opt;b.onclick=()=>{if(checked)return;selected=opt;[...$("choices").children].forEach(x=>x.classList.remove("selected"));b.classList.add("selected")};$("choices").appendChild(b)});
+ candles=scenarioCandles(s);updateLevels();draw();setTool("entry");$("chartHint").textContent="Klicke in den Chart, um Kurslevel zu setzen."}
+function setTool(t){tool=t;["entry","sl","tp"].forEach(k=>$("tool"+k[0].toUpperCase()+k.slice(1)).classList.toggle("active",k===t))}
+$("toolEntry").onclick=()=>setTool("entry");$("toolSL").onclick=()=>setTool("sl");$("toolTP").onclick=()=>setTool("tp");$("clearLevels").onclick=()=>{levels={entry:null,sl:null,tp:null};updateLevels();draw()};
+$("showHint").onclick=()=>{$("hint").style.display=$("hint").style.display==="none"?"block":"none"};
+$("check").onclick=()=>{if(checked)return;if(!selected){alert("Bitte wähle zuerst eine Antwort aus.");return}let s=window.task,patternOK=selected===s.answer;let has=levels.entry!==null&&levels.sl!==null&&levels.tp!==null;let near=(a,b)=>Math.abs(a-b)<=Math.max(.0008,Math.abs(b)*.0007);let levelScore=has?([near(levels.entry,s.entry),near(levels.sl,s.sl),near(levels.tp,s.tp)].filter(Boolean).length):0;let score=(patternOK?1:0)+levelScore;let max=4,ok=score>=3;checked=true;stats.done++;if(ok){stats.correct++;stats.streak++;stats.best=Math.max(stats.best,stats.streak);session.correct++;}else{stats.wrong++;stats.streak=0;session.wrong++}let xp=score*25;stats.xp+=xp;session.xp+=xp;localStorage.setItem("ttstats",JSON.stringify(stats));$("result").className="result show "+(ok?"ok":"no");$("result").innerHTML=`<b>${ok?"✓ Gute Analyse!":"Noch nicht ganz."}</b> · ${score}/${max} Punkte · +${xp} XP<br><br><b>Musterlösung:</b> ${s.answer}<br><b>Entry:</b> ${s.entry.toFixed(4)} · <b>SL:</b> ${s.sl.toFixed(4)} · <b>TP:</b> ${s.tp.toFixed(4)}<br><br>${s.explain}<br><br><span class="small">Deine Markierungen werden mit einer Toleranz bewertet. Das ist eine Lernhilfe, keine eindeutige Marktprognose.</span>`;$("next").disabled=false;[...$("choices").children].forEach(b=>{if(b.textContent===s.answer)b.classList.add("correct");else if(b.textContent===selected)b.classList.add("wrong")});updateStats();$("check").textContent="Ausgewertet"};
+$("next").onclick=()=>{loadTask();$("check").textContent="Antwort überprüfen"};
+function updateStats(){let total=stats.correct+stats.wrong;$("xp").textContent=stats.xp+" XP";$("streak").textContent=stats.streak+" Serie";$("accuracy").textContent=(total?Math.round(stats.correct/total*100):0)+"%";$("doneCount").textContent=stats.done;$("bestStreak").textContent=stats.best;$("avgScore").textContent=total?Math.round(stats.correct/total*100)+"%":"–";$("sessionCorrect").textContent=session.correct;$("sessionWrong").textContent=session.wrong;$("sessionXP").textContent=session.xp;$("statsText").textContent=`Du hast ${stats.done} Aufgaben ausgewertet. ${stats.correct} davon mit mindestens 3 von 4 Punkten. Deine Trefferquote liegt bei ${total?Math.round(stats.correct/total*100):0} %. Insgesamt gesammelt: ${stats.xp} XP. Beste Serie: ${stats.best}.`;}
+$("category").onchange=()=>{current=-1;loadTask()};$("difficulty").onchange=()=>{current=-1;loadTask()};
+$("statsNav").onclick=()=>{$("statsPanel").style.display=$("statsPanel").style.display==="none"?"block":"none";$("learnPanel").style.display="none";updateStats()};
+$("learnNav").onclick=()=>{$("learnPanel").style.display=$("learnPanel").style.display==="none"?"block":"none";$("statsPanel").style.display="none"};
+$("resetStats").onclick=()=>{if(confirm("Möchtest du alle gespeicherten Statistiken wirklich zurücksetzen?")){stats={done:0,correct:0,wrong:0,xp:0,streak:0,best:0};localStorage.setItem("ttstats",JSON.stringify(stats));updateStats()}};
+$("timeframe").onchange=()=>{$("chartHint").textContent="Übungsdarstellung · Zeitrahmen "+$("timeframe").value;};
+window.addEventListener("resize",draw);updateStats();current=-1;loadTask();
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error));
+}
+</script>
+</body></html>

@@ -1,0 +1,24 @@
+TRADETRAINER – KOSTENLOSE iPHONE-WEB-APP
+
+INHALT
+- index.html: TradeTrainer
+- manifest.webmanifest: App-Metadaten
+- sw.js: Offline-Cache
+- icon-*.png: App-Symbole
+
+VERÖFFENTLICHUNG
+Die Dateien müssen auf einer HTTPS-Adresse liegen, damit iPhone-Safari die Web-App-Funktionen (Home-Bildschirm/Offline-Cache) verwenden kann.
+Eine kostenlose Möglichkeit ist GitHub Pages:
+1. Kostenloses Konto auf github.com erstellen/anmelden.
+2. Neues Repository erstellen (z.B. tradetrainer). Für GitHub Pages ist ein öffentliches Repository beim kostenlosen Tarif die einfachste Variante.
+3. Alle Dateien aus diesem Ordner direkt in das Repository hochladen (nicht den ZIP-Ordner selbst).
+4. Im Repository Settings > Pages öffnen.
+5. Bei Build and deployment: Deploy from a branch wählen, Branch main und Ordner /(root), dann Save.
+6. Warten, bis GitHub Pages eine HTTPS-Webadresse anzeigt.
+7. Diese Adresse auf dem iPhone in Safari öffnen.
+8. Teilen-Symbol > Zum Home-Bildschirm > Hinzufügen.
+
+HINWEISE
+- Das ist die Web-App-Ausgabe des vorhandenen TradeTrainer-Prototyps, keine native App aus dem App Store.
+- Aufgaben und Kursverläufe sind Übungs-/Simulationsdaten, keine Echtzeitkurse und keine Anlageempfehlung.
+- Fortschritt wird lokal im Browser gespeichert. Er wird nicht automatisch zwischen Geräten synchronisiert.
