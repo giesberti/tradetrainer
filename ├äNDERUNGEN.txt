@@ -1,0 +1,10 @@
+TradeTrainer – Update 3
+
+Enthaltene Änderungen:
+1. Chart-Zoom: Herauszoomen, Hereinzoomen und Ansicht einpassen. Kurslevel und TP werden beim automatischen Skalieren berücksichtigt.
+2. Getrennte Kategorien: Mustererkennung, Entry setzen sowie SL / TP planen. Bei SL/TP ist die Entry-Zone bereits im Chart eingezeichnet.
+3. Neue AOI-Übungen: AOI-Art auswählen und die Zone im Chart per Ziehen markieren.
+4. 21 Übungen in drei Schwierigkeitsstufen; die Reihenfolge wird pro Durchlauf gemischt.
+5. Lösungsübersicht: Eigene Eingabe und Musterlösung werden je Level in derselben Farbe angezeigt. Eigene Linie durchgezogen, Lösung gestrichelt.
+
+Installation: Dateien aus diesem Paket direkt in den Stammordner des GitHub-Repositorys kopieren und vorhandene Dateien ersetzen. Danach committen und pushen.

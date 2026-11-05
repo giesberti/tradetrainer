@@ -1,0 +1,6 @@
+TradeTrainer
+Version: 1.4.0
+Build: 04
+Stand: 05.11.2026
+
+Anzeige: oben rechts in der Kopfzeile und unten unter „Über TradeTrainer“.

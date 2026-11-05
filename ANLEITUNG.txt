@@ -1,24 +1,29 @@
-TRADETRAINER – KOSTENLOSE iPHONE-WEB-APP
+TRADETRAINER – UPDATE 3
 
-INHALT
-- index.html: TradeTrainer
-- manifest.webmanifest: App-Metadaten
-- sw.js: Offline-Cache
-- icon-*.png: App-Symbole
+DATEIEN
+- index.html: neue Trainingsfunktionen und Übungen
+- sw.js: aktualisierter Offline-Cache (v4)
+- manifest.webmanifest und icon-*.png: PWA-Metadaten und App-Symbole
 
-VERÖFFENTLICHUNG
-Die Dateien müssen auf einer HTTPS-Adresse liegen, damit iPhone-Safari die Web-App-Funktionen (Home-Bildschirm/Offline-Cache) verwenden kann.
-Eine kostenlose Möglichkeit ist GitHub Pages:
-1. Kostenloses Konto auf github.com erstellen/anmelden.
-2. Neues Repository erstellen (z.B. tradetrainer). Für GitHub Pages ist ein öffentliches Repository beim kostenlosen Tarif die einfachste Variante.
-3. Alle Dateien aus diesem Ordner direkt in das Repository hochladen (nicht den ZIP-Ordner selbst).
-4. Im Repository Settings > Pages öffnen.
-5. Bei Build and deployment: Deploy from a branch wählen, Branch main und Ordner /(root), dann Save.
-6. Warten, bis GitHub Pages eine HTTPS-Webadresse anzeigt.
-7. Diese Adresse auf dem iPhone in Safari öffnen.
-8. Teilen-Symbol > Zum Home-Bildschirm > Hinzufügen.
+UPDATE AUF DEINER GITHUB-PAGES-SEITE
+1. ZIP-Datei herunterladen und entpacken.
+2. Den Ordner „TradeTrainer-PWA“ öffnen.
+3. Alle Dateien IN diesem Ordner markieren und kopieren.
+4. Deinen lokalen Repository-Ordner „tradetrainer“ öffnen.
+5. Die Dateien dort einfügen und vorhandene Dateien ersetzen. Wichtig: Nicht den Ordner „TradeTrainer-PWA“ selbst in das Repository kopieren.
+6. In GitHub Desktop die Änderungen committen und „Push origin“ anklicken.
+7. Warten, bis der GitHub-Pages-Workflow erfolgreich abgeschlossen ist.
+8. Die Website mit Strg+F5 neu laden. Falls die alte Version bleibt, Website-Daten für giesberti.github.io löschen und erneut öffnen.
+
+NEUE FUNKTIONEN
+- Zoom heraus / hinein / Ansicht einpassen
+- Kategorien: Mustererkennung, Entry setzen, SL / TP planen, AOI finden
+- Bei SL/TP ist die Entry-Zone im Chart vorgegeben
+- AOI-Zonen per Ziehen im Chart markieren
+- 21 Übungen in drei Schwierigkeitsstufen, zufällige Reihenfolge
+- Eigene Linien durchgezogen, Musterlösung gestrichelt und je Level farblich identisch
 
 HINWEISE
-- Das ist die Web-App-Ausgabe des vorhandenen TradeTrainer-Prototyps, keine native App aus dem App Store.
-- Aufgaben und Kursverläufe sind Übungs-/Simulationsdaten, keine Echtzeitkurse und keine Anlageempfehlung.
-- Fortschritt wird lokal im Browser gespeichert. Er wird nicht automatisch zwischen Geräten synchronisiert.
+- Die App ist eine kostenlose PWA, keine native App aus dem App Store.
+- Kursverläufe sind simulierte Übungsdaten, keine Echtzeitkurse und keine Anlageempfehlung.
+- Fortschritt wird lokal im Browser gespeichert und nicht automatisch zwischen Geräten synchronisiert.
