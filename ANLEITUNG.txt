@@ -1,27 +1,21 @@
-TRADETRAINER – UPDATE 3
-
-DATEIEN
-- index.html: neue Trainingsfunktionen und Übungen
-- sw.js: aktualisierter Offline-Cache (v4)
-- manifest.webmanifest und icon-*.png: PWA-Metadaten und App-Symbole
+TRADETRAINER – VERSION 1.5.0 · BUILD 05
 
 UPDATE AUF DEINER GITHUB-PAGES-SEITE
 1. ZIP-Datei herunterladen und entpacken.
 2. Den Ordner „TradeTrainer-PWA“ öffnen.
 3. Alle Dateien IN diesem Ordner markieren und kopieren.
 4. Deinen lokalen Repository-Ordner „tradetrainer“ öffnen.
-5. Die Dateien dort einfügen und vorhandene Dateien ersetzen. Wichtig: Nicht den Ordner „TradeTrainer-PWA“ selbst in das Repository kopieren.
-6. In GitHub Desktop die Änderungen committen und „Push origin“ anklicken.
+5. Die Dateien dort einfügen und vorhandene Dateien ersetzen. Nicht den Ordner „TradeTrainer-PWA“ selbst in das Repository kopieren.
+6. In GitHub Desktop committen und „Push origin“ anklicken.
 7. Warten, bis der GitHub-Pages-Workflow erfolgreich abgeschlossen ist.
 8. Die Website mit Strg+F5 neu laden. Falls die alte Version bleibt, Website-Daten für giesberti.github.io löschen und erneut öffnen.
 
-NEUE FUNKTIONEN
-- Zoom heraus / hinein / Ansicht einpassen
-- Kategorien: Mustererkennung, Entry setzen, SL / TP planen, AOI finden
-- Bei SL/TP ist die Entry-Zone im Chart vorgegeben
-- AOI-Zonen per Ziehen im Chart markieren
-- 21 Übungen in drei Schwierigkeitsstufen, zufällige Reihenfolge
-- Eigene Linien durchgezogen, Musterlösung gestrichelt und je Level farblich identisch
+NEUE FUNKTIONEN IN 1.5.0
+- Startmenü mit vier eigenständigen Trainingsspielen: Mustererkennung, Entry setzen, SL/TP planen und AOI finden.
+- Jede Übung bleibt strikt in der gewählten Kategorie. Über „Kategorie wechseln“ kommst du zurück zur Auswahl.
+- Mausrad über dem Chart: horizontal hinein- und herauszoomen.
+- Rechte Preisskala: Maus über die Zahlen bewegen, linke Maustaste gedrückt halten und nach oben/unten ziehen. Dadurch wird die Preisskala vertikal gestreckt bzw. gestaucht – wie bei TradingView.
+- Die Zoom-Schaltflächen bleiben zusätzlich verfügbar.
 
 HINWEISE
 - Die App ist eine kostenlose PWA, keine native App aus dem App Store.

@@ -1,4 +1,4 @@
-const CACHE = 'tradetrainer-v5';
+const CACHE = 'tradetrainer-v6';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));

@@ -1,6 +1,6 @@
 TradeTrainer
-Version: 1.4.0
-Build: 04
+Version: 1.5.0
+Build: 05
 Stand: 05.11.2026
 
-Anzeige: oben rechts in der Kopfzeile und unten unter „Über TradeTrainer“.
+Neu: separate Auswahl der vier Trainingsspiele; Aufgaben bleiben strikt in der gewählten Kategorie; Mausrad zoomt horizontal; Ziehen an der rechten Preisskala streckt/staucht die Kerzen vertikal.

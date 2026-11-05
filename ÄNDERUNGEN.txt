@@ -1,0 +1,7 @@
+TradeTrainer 1.5.0 – Build 05
+
+- Startmenü mit vier eigenständigen Trainingsspielen.
+- Kategorien werden strikt getrennt; keine Aufgaben aus anderen Bereichen.
+- Mausrad zoomt horizontal in die letzten Kerzen hinein bzw. heraus.
+- Rechte Preisskala kann mit gedrückter Maustaste vertikal gezogen werden, um Kerzen/Preisspanne zu strecken oder zu stauchen.
+- Zoom-Tasten bleiben zusätzlich verfügbar.
