@@ -1,0 +1,2 @@
+# tradetrainer
+TradeTrainer für iPhone
