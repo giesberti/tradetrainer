@@ -1,23 +1,18 @@
-TRADETRAINER – VERSION 1.5.0 · BUILD 05
+TradeTrainer 1.6.0 – Update installieren
 
-UPDATE AUF DEINER GITHUB-PAGES-SEITE
-1. ZIP-Datei herunterladen und entpacken.
-2. Den Ordner „TradeTrainer-PWA“ öffnen.
-3. Alle Dateien IN diesem Ordner markieren und kopieren.
-4. Deinen lokalen Repository-Ordner „tradetrainer“ öffnen.
-5. Die Dateien dort einfügen und vorhandene Dateien ersetzen. Nicht den Ordner „TradeTrainer-PWA“ selbst in das Repository kopieren.
-6. In GitHub Desktop committen und „Push origin“ anklicken.
-7. Warten, bis der GitHub-Pages-Workflow erfolgreich abgeschlossen ist.
-8. Die Website mit Strg+F5 neu laden. Falls die alte Version bleibt, Website-Daten für giesberti.github.io löschen und erneut öffnen.
+1. ZIP entpacken.
+2. Den Inhalt des Ordners TradeTrainer-PWA in deinen lokalen GitHub-Ordner tradetrainer kopieren.
+3. Vorhandene Dateien ersetzen.
+4. In GitHub Desktop die Änderungen committen und Push origin ausführen.
+5. Warten, bis GitHub Pages erfolgreich veröffentlicht hat.
+6. Website mit Strg+F5 neu laden. Falls die alte App weiter angezeigt wird, Website-Daten für giesberti.github.io löschen und erneut öffnen.
 
-NEUE FUNKTIONEN IN 1.5.0
-- Startmenü mit vier eigenständigen Trainingsspielen: Mustererkennung, Entry setzen, SL/TP planen und AOI finden.
-- Jede Übung bleibt strikt in der gewählten Kategorie. Über „Kategorie wechseln“ kommst du zurück zur Auswahl.
-- Mausrad über dem Chart: horizontal hinein- und herauszoomen.
-- Rechte Preisskala: Maus über die Zahlen bewegen, linke Maustaste gedrückt halten und nach oben/unten ziehen. Dadurch wird die Preisskala vertikal gestreckt bzw. gestaucht – wie bei TradingView.
-- Die Zoom-Schaltflächen bleiben zusätzlich verfügbar.
+Commit-Summary:
+TradeTrainer 1.6.0 – Startseite, getrennte Eingaben, Chart-Zoom und drei neue Trainingsspiele
 
-HINWEISE
-- Die App ist eine kostenlose PWA, keine native App aus dem App Store.
-- Kursverläufe sind simulierte Übungsdaten, keine Echtzeitkurse und keine Anlageempfehlung.
-- Fortschritt wird lokal im Browser gespeichert und nicht automatisch zwischen Geräten synchronisiert.
+Hinweise:
+- Startseite: Spiel auswählen; nach der Auswahl erscheint ausschließlich dieses Training.
+- Im Entry-Spiel wird nur Entry gesetzt.
+- Im SL/TP-Spiel ist die Entry-Zone vorgegeben; nur SL und TP werden gesetzt.
+- Mustererkennung, Trend, Support/Resistance und CRV zeigen keine unnötigen Kurslevel.
+- Mausrad über dem Chart zoomt horizontal. Rechts auf der Preisskala mit gedrückter linker Maustaste nach oben/unten ziehen, um die Kerzen vertikal zu strecken/stauchen.

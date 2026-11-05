@@ -1,7 +1,11 @@
-TradeTrainer 1.5.0 – Build 05
+TradeTrainer 1.6.0 – Build 06
 
-- Startmenü mit vier eigenständigen Trainingsspielen.
-- Kategorien werden strikt getrennt; keine Aufgaben aus anderen Bereichen.
-- Mausrad zoomt horizontal in die letzten Kerzen hinein bzw. heraus.
-- Rechte Preisskala kann mit gedrückter Maustaste vertikal gezogen werden, um Kerzen/Preisspanne zu strecken oder zu stauchen.
-- Zoom-Tasten bleiben zusätzlich verfügbar.
+- Mustererkennung und weitere reine Analyse-Spiele zeigen keine Entry-/SL-/TP-Felder mehr.
+- Entry-Spiel zeigt ausschließlich das Entry-Level.
+- SL/TP-Spiel zeigt die vorgegebene Entry-Zone und nur SL- und TP-Eingaben.
+- AOI-Spiel zeigt keine unnötigen Kurslevel-Felder.
+- Trainingsauswahl ist jetzt die normale Startseite unterhalb des Headers, kein Modal-Overlay.
+- Mausrad-Zoom funktioniert über Chart und Preisskala mit höherer Empfindlichkeit.
+- Rechte Preisskala ist deutlich breiter; Ziehen skaliert die Preisspanne vertikal.
+- Neue Spiele: Trend & Marktstruktur, Support & Resistance, CRV & Risikomanagement.
+- 32 Übungen, nach Kategorien getrennt und zufällig sortiert.
